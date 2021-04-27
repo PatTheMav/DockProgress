@@ -18,6 +18,7 @@ public enum DockProgress {
 				return
 			}
 
+			// TODO: Use Combine when targeting macOS 10.15.
 			progressObserver = progressInstance.observe(\.fractionCompleted) { sender, _ in
 				guard
 					!sender.isCancelled,
@@ -66,7 +67,7 @@ public enum DockProgress {
 		case custom(drawHandler: (_ rect: CGRect) -> Void)
 	}
 
-	public static var style: ProgressStyle = .bar
+	public static var style = ProgressStyle.bar
 
 	// TODO: Make the progress smoother by also animating the steps between each call to `updateDockIcon()`
 	private static func updateDockIcon() {
@@ -84,19 +85,19 @@ public enum DockProgress {
 	}
 
 	private static func draw(_ appIcon: NSImage) -> NSImage {
-		NSImage(size: appIcon.size, flipped: false) { dstRect in
+		NSImage(size: appIcon.size, flipped: false) { [self] dstRect in
 			NSGraphicsContext.current?.imageInterpolation = .high
 			appIcon.draw(in: dstRect)
 
-			switch self.style {
+			switch style {
 			case .bar:
-				self.drawProgressBar(dstRect)
+				drawProgressBar(dstRect)
 			case .squircle(let inset, let color):
-				self.drawProgressSquircle(dstRect, inset: inset, color: color)
+				drawProgressSquircle(dstRect, inset: inset, color: color)
 			case .circle(let radius, let color):
-				self.drawProgressCircle(dstRect, radius: radius, color: color)
+				drawProgressCircle(dstRect, radius: radius, color: color)
 			case .badge(let color, let badgeValue):
-				self.drawProgressBadge(dstRect, color: color, badgeLabel: badgeValue())
+				drawProgressBadge(dstRect, color: color, badgeLabel: badgeValue())
 			case .custom(let drawingHandler):
 				drawingHandler(dstRect)
 			}

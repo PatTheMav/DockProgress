@@ -84,7 +84,7 @@ This is the default.
 ```swift
 import DockProgress
 
-DockProgress.style = .squircle(color: NSColor.white.withAlphaComponent(0.5))
+DockProgress.style = .squircle(color: .white.withAlphaComponent(0.5))
 ```
 
 By default, it should perfectly fit a macOS 11 icon, but there's a `inset` parameter if you need to make any adjustments.

@@ -66,7 +66,7 @@ extension NSBezierPath {
 	/**
 	Create a path for a squircle that fits inside the given `rect`.
 
-	- Important: The given `rect` must be square.
+	- Precondition: The given `rect` must be square.
 	*/
 	static func squircle(rect: CGRect) -> Self {
 		assert(rect.width == rect.height)
@@ -263,7 +263,7 @@ final class VerticallyCenteredTextLayer: CATextLayer {
 extension NSColor {
 	public static let controlAccentColorPolyfill: NSColor = {
 		if #available(macOS 10.14, *) {
-			return NSColor.controlAccentColor
+			return .controlAccentColor
 		} else {
 			// swiftlint:disable:next object_literal
 			return NSColor(red: 0.10, green: 0.47, blue: 0.98, alpha: 1)

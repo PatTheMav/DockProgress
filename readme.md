@@ -121,4 +121,5 @@ Note: The `badgeValue` is not meant to be used as a numeric percentage. It's for
 - [Preferences](https://github.com/sindresorhus/Preferences) - Add a preferences window to your macOS app in minutes
 - [KeyboardShortcuts](https://github.com/sindresorhus/KeyboardShortcuts) - Add user-customizable global keyboard shortcuts to your macOS app
 - [LaunchAtLogin](https://github.com/sindresorhus/LaunchAtLogin) - Add "Launch at Login" functionality to your macOS app
+- [Regex](https://github.com/sindresorhus/Regex) - Swifty regular expressions
 - [More…](https://github.com/search?q=user%3Asindresorhus+language%3Aswift)

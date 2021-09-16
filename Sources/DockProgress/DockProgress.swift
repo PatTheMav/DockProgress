@@ -120,7 +120,7 @@ public enum DockProgress {
 		roundedRect(barInnerBg)
 
 		var barProgress = bar.insetBy(dx: 1, dy: 1)
-		barProgress.size.width = barProgress.width * CGFloat(progress)
+		barProgress.size.width = barProgress.width * progress
 		NSColor.white.set()
 		roundedRect(barProgress)
 	}
@@ -130,12 +130,12 @@ public enum DockProgress {
 			return
 		}
 
-		let defaultInset: CGFloat = 14.4
+		let defaultInset = 14.4
 
 		var rect = dstRect.insetBy(dx: defaultInset, dy: defaultInset)
 
 		if let inset = inset {
-			rect = rect.insetBy(dx: CGFloat(inset), dy: CGFloat(inset))
+			rect = rect.insetBy(dx: inset, dy: inset)
 		}
 
 		let progressSquircle = ProgressSquircleShapeLayer(rect: rect)
@@ -166,7 +166,7 @@ public enum DockProgress {
 		let newCenter = CGPoint(x: dstRect.maxX - radius - 4, y: dstRect.minY + radius + 4)
 
 		// Background
-		let badge = ProgressCircleShapeLayer(radius: Double(radius), center: newCenter)
+		let badge = ProgressCircleShapeLayer(radius: radius, center: newCenter)
 		badge.fillColor = CGColor(red: 0.94, green: 0.96, blue: 1, alpha: 1)
 		badge.shadowColor = .black
 		badge.shadowOpacity = 0.3
@@ -175,9 +175,9 @@ public enum DockProgress {
 		badge.shadowPath = badge.path
 
 		// Progress circle
-		let lineWidth: CGFloat = 6
+		let lineWidth = 6.0
 		let innerRadius = radius - lineWidth / 2
-		let progressCircle = ProgressCircleShapeLayer(radius: Double(innerRadius), center: newCenter)
+		let progressCircle = ProgressCircleShapeLayer(radius: innerRadius, center: newCenter)
 		progressCircle.strokeColor = color.cgColor
 		progressCircle.lineWidth = lineWidth
 		progressCircle.lineCap = .butt
@@ -222,7 +222,7 @@ public enum DockProgress {
 		}
 	}
 
-	private static func scaledBadgeFontSize(text: String) -> CGFloat {
+	private static func scaledBadgeFontSize(text: String) -> Double {
 		switch text.count {
 		case 1:
 			return 30

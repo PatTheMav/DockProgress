@@ -26,7 +26,7 @@ extension NSBezierPath {
 	*/
 	static func superellipse(in rect: CGRect, cornerRadius: Double) -> Self {
 		let minSide = min(rect.width, rect.height)
-		let radius = min(CGFloat(cornerRadius), minSide / 2)
+		let radius = min(cornerRadius, minSide / 2)
 
 		let topLeft = CGPoint(x: rect.minX, y: rect.minY)
 		let topRight = CGPoint(x: rect.maxX, y: rect.minY)
@@ -70,7 +70,7 @@ extension NSBezierPath {
 	*/
 	static func squircle(rect: CGRect) -> Self {
 		assert(rect.width == rect.height)
-		return superellipse(in: rect, cornerRadius: Double(rect.width / 2))
+		return superellipse(in: rect, cornerRadius: rect.width / 2)
 	}
 }
 
@@ -94,10 +94,10 @@ final class ProgressSquircleShapeLayer: CAShapeLayer {
 	}
 
 	var progress: Double {
-		get { Double(strokeEnd) }
+		get { strokeEnd }
 		set {
 			// Multiplying by `1.02` ensures that the start and end points meet at the end. Needed because of the round line cap.
-			strokeEnd = CGFloat(newValue * 1.02)
+			strokeEnd = newValue * 1.02
 		}
 	}
 }
@@ -106,11 +106,11 @@ final class ProgressSquircleShapeLayer: CAShapeLayer {
 extension NSBezierPath {
 	/// For making a circle progress indicator.
 	static func progressCircle(radius: Double, center: CGPoint) -> Self {
-		let startAngle: CGFloat = 90
+		let startAngle = 90.0
 		let path = self.init()
 		path.appendArc(
 			withCenter: center,
-			radius: CGFloat(radius),
+			radius: radius,
 			startAngle: startAngle,
 			endAngle: startAngle - 360,
 			clockwise: true
@@ -134,10 +134,10 @@ final class ProgressCircleShapeLayer: CAShapeLayer {
 	}
 
 	var progress: Double {
-		get { Double(strokeEnd) }
+		get { strokeEnd }
 		set {
 			// Multiplying by `1.02` ensures that the start and end points meet at the end. Needed because of the round line cap.
-			strokeEnd = CGFloat(newValue * 1.02)
+			strokeEnd = newValue * 1.02
 		}
 	}
 }
@@ -145,7 +145,7 @@ final class ProgressCircleShapeLayer: CAShapeLayer {
 
 extension NSColor {
 	func withAlpha(_ alpha: Double) -> NSColor {
-		withAlphaComponent(CGFloat(alpha))
+		withAlphaComponent(alpha)
 	}
 }
 
@@ -194,7 +194,7 @@ extension NSBezierPath {
 	}
 
 	/// UIKit polyfill.
-	convenience init(roundedRect rect: CGRect, cornerRadius: CGFloat) {
+	convenience init(roundedRect rect: CGRect, cornerRadius: CGFloat) { // swiftlint:disable:this no_cgfloat
 		self.init(roundedRect: rect, xRadius: cornerRadius, yRadius: cornerRadius)
 	}
 
@@ -218,7 +218,7 @@ extension NSBezierPath {
 	func rotationTransform(byRadians radians: Double, centerPoint point: CGPoint) -> AffineTransform {
 		var transform = AffineTransform()
 		transform.translate(x: point.x, y: point.y)
-		transform.rotate(byRadians: CGFloat(radians))
+		transform.rotate(byRadians: radians)
 		transform.translate(x: -point.x, y: -point.y)
 		return transform
 	}

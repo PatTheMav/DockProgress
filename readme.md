@@ -59,7 +59,7 @@ The given `Progress` instance is weakly stored. It's up to you to retain it.
 
 ## Styles
 
-It comes with three styles. PR welcome for more.
+It comes with four styles. PR welcome for more.
 
 Check out the example app in the Xcode project.
 
@@ -87,7 +87,7 @@ import DockProgress
 DockProgress.style = .squircle(color: .white.withAlphaComponent(0.5))
 ```
 
-By default, it should perfectly fit a macOS 11 icon, but there's a `inset` parameter if you need to make any adjustments.
+By default, it should perfectly fit a macOS 11 and later icon, but there is an `inset` parameter if you need to make any adjustments.
 
 ### Circle
 

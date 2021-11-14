@@ -104,7 +104,9 @@ final class ProgressSquircleShapeLayer: CAShapeLayer {
 
 
 extension NSBezierPath {
-	/// For making a circle progress indicator.
+	/**
+	For making a circle progress indicator.
+	*/
 	static func progressCircle(radius: Double, center: CGPoint) -> Self {
 		let startAngle = 90.0
 		let path = self.init()
@@ -169,7 +171,9 @@ extension CGRect {
 
 
 extension NSBezierPath {
-	/// UIKit polyfill.
+	/**
+	UIKit polyfill.
+	*/
 	var cgPath: CGPath {
 		let path = CGMutablePath()
 		var points = [CGPoint](repeating: .zero, count: 3)
@@ -193,17 +197,23 @@ extension NSBezierPath {
 		return path
 	}
 
-	/// UIKit polyfill.
+	/**
+	UIKit polyfill.
+	*/
 	convenience init(roundedRect rect: CGRect, cornerRadius: CGFloat) { // swiftlint:disable:this no_cgfloat
 		self.init(roundedRect: rect, xRadius: cornerRadius, yRadius: cornerRadius)
 	}
 
-	/// UIKit polyfill.
+	/**
+	UIKit polyfill.
+	*/
 	func addLine(to point: CGPoint) {
 		line(to: point)
 	}
 
-	/// UIKit polyfill.
+	/**
+	UIKit polyfill.
+	*/
 	func addCurve(to endPoint: CGPoint, controlPoint1: CGPoint, controlPoint2: CGPoint) {
 		curve(to: endPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
 	}
@@ -237,7 +247,9 @@ extension NSBezierPath {
 }
 
 
-/// Fixes the vertical alignment issue of the `CATextLayer` class.
+/**
+Fixes the vertical alignment issue of the `CATextLayer` class.
+*/
 final class VerticallyCenteredTextLayer: CATextLayer {
 	convenience init(frame rect: CGRect, center: CGPoint) {
 		self.init()
@@ -259,7 +271,9 @@ final class VerticallyCenteredTextLayer: CATextLayer {
 }
 
 
-/// macOS 10.14 polyfill.
+/**
+macOS 10.14 polyfill.
+*/
 extension NSColor {
 	public static let controlAccentColorPolyfill: NSColor = {
 		if #available(macOS 10.14, *) {

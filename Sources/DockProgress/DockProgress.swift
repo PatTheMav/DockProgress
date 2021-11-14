@@ -52,7 +52,9 @@ public enum DockProgress {
 		}
 	}
 
-	/// Reset the `progress` without animating.
+	/**
+	Reset the `progress` without animating.
+	*/
 	public static func resetProgress() {
 		progress = 0
 		previousProgress = 0
